@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get "searches/index"
   get "articles/index"
   get "articles/create"
   # available routes
