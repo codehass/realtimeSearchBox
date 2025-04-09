@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_04_09_154730) do
+ActiveRecord::Schema[8.0].define(version: 2025_04_09_175247) do
   create_table "articles", force: :cascade do |t|
     t.string "title"
     t.text "content"
@@ -29,6 +29,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_09_154730) do
   create_table "visitors", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "ip_address"
   end
 
   add_foreign_key "searches", "visitors"
