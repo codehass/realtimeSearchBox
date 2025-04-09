@@ -1,8 +1,11 @@
 class SearchesController < ApplicationController
-  def show
+  def index
+    @searches = current_visitor.searches.order(created_at: :desc)
   end
 
-  def index
-    # @searches = Search.all
+  private
+
+  def search_params
+    params.require(:search).permit(:query)
   end
 end
