@@ -4,6 +4,6 @@ Rails.application.routes.draw do
   get "articles/create"
   # available routes
   root "articles#index"
-  resources :searches, only: [ :index, :show ]
+  resources :searches, only: [ :index, :show, :create ]
   resources :articles, only: :index
 end
