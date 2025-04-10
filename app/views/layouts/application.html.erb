@@ -23,7 +23,10 @@
   </head>
 
   <body>
-    <%# <p>Your IP address is: <%= request.remote_ip %></p> %>
+    <%= form_with url: articles_path, method: :get, local: true do |form| %>
+      <%= form.text_field :query, placeholder: "Search for articles" %>
+    <%= form.submit "Search" %>
+    <% end %>
 
     <%= yield %>
   </body>
