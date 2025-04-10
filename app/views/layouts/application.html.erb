@@ -23,11 +23,15 @@
   </head>
 
   <body>
-    <%= form_with url: articles_path, method: :get, local: true do |form| %>
-      <%= form.text_field :query, placeholder: "Search for articles" %>
-    <%= form.submit "Search" %>
-    <% end %>
-
+  <nav >
+    <%= link_to 'Home', articles_path %>
+    <%= link_to 'Search History', searches_path %>
+  </nav>
+  <main>
     <%= yield %>
+  </main>
+  <footer>
+    <p>&copy; 2025 Realtime Search Box</p>
+  </footer>
   </body>
 </html>
