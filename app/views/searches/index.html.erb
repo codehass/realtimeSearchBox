@@ -1,14 +1,48 @@
-<p>Previous searches:</p>
-<ul>
-  <% current_visitor.searches.last(5).reverse.each do |search| %>
-    <li><%= search.query %></li>
-  <% end %>
-</ul>
-<h2>History</h2>
-<p>Then length of searches: <%= @searches.length %></p>
-<% @searches.each do |search| %>
-  <div >
-    <h2><%= search.query %></h2>
-  </div>
-<% end %>
+<%# Trending Queries %>
+<div class="mb-5 p-6 bg-white border border-gray-200 rounded-md">
+  <h2 class="text-2xl font-semibold text-gray-800 mb-4">Trending Queries</h2>
 
+  <% if @trending_queries.any? %>
+    <ul class="divide-y divide-gray-200">
+      <% @trending_queries.each do |query, count| %>
+        <li class="flex justify-between items-center px-4 py-2 text-gray-800">
+          <div class="flex items-center space-x-2">
+            <span class="w-2 h-2 bg-gray-500 rounded-full inline-block"></span>
+            <span class="font-medium"><%= query %></span>
+          </div>
+          <span class="text-sm text-gray-500">Searched <%= count %> times</span>
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p class="text-gray-500 text-center">No trending queries yet.</p>
+  <% end %>
+</div>
+
+<%# Previous Searches %>
+<div class="mb-5 p-6 bg-white border border-gray-200 rounded-md">
+  <h2 class="text-2xl font-semibold text-gray-800 mb-4">Previous Searches</h2>
+  <ul class="divide-y divide-gray-200">
+    <% current_visitor.searches.last(5).reverse.each do |search| %>
+      <li class="px-4 py-2 text-gray-700 text-lg font-medium flex items-center">
+        <span class="w-2 h-2 bg-gray-500 rounded-full inline-block mr-3"></span>
+        <span><%= search.query %></span>
+      </li>
+    <% end %>
+  </ul>
+</div>
+
+<%# Full Search History %>
+<div class="mb-5 p-6 bg-white border border-gray-200 rounded-md">
+  <h2 class="text-2xl font-semibold text-gray-800 mb-4">Search History</h2>
+  <p class="text-gray-600 mb-6">Total searches: <%= @searches.length %></p>
+
+  <ul class="divide-y divide-gray-200">
+    <% @searches.each do |search| %>
+      <li class="flex items-center px-4 py-2 text-gray-800">
+        <span class="w-2 h-2 bg-gray-400 rounded-full inline-block mr-3"></span>
+        <span class="font-medium text-base"><%= search.query %></span>
+      </li>
+    <% end %>
+  </ul>
+</div>
