@@ -54,3 +54,5 @@ test:
 production:
   <<: *default
   url: <%= ENV['DATABASE_URL'] %>
+  cable:
+    url: <%= ENV.fetch('ACTION_CABLE_DATABASE_URL', ENV['DATABASE_URL']) %>
