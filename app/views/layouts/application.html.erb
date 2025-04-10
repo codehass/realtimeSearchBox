@@ -22,16 +22,18 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
-  <nav >
-    <%= link_to 'Home', articles_path %>
-    <%= link_to 'Search History', searches_path %>
+<body class="min-h-screen flex flex-col justify-center items-center bg-gray-50 text-gray-800 font-sans">
+  <nav class="bg-gray-100 px-6 py-4 shadow-sm flex items-center space-x-6 mb-8 rounded-md w-full">
+    <%= link_to 'Home', articles_path, class: "text-blue-600 hover:text-blue-800 font-medium transition" %>
+    <%= link_to 'Search History', searches_path, class: "text-blue-600 hover:text-blue-800 font-medium transition" %>
   </nav>
-  <main>
+
+  <main class="flex-1 w-full max-w-4xl px-4">
     <%= yield %>
   </main>
-  <footer>
+
+  <footer class="text-center text-sm text-gray-500 py-4 w-full">
     <p>&copy; 2025 Realtime Search Box</p>
   </footer>
-  </body>
+</body>
 </html>
