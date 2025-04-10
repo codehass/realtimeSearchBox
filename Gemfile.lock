@@ -413,7 +413,7 @@ DEPENDENCIES
   jbuilder
   kamal
   litestream (~> 0.12.0)
-  pg
+  pg (~> 1.1)
   propshaft
   puma (>= 5.0)
   rails (~> 8.0.2)
