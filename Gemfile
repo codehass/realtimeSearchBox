@@ -73,4 +73,4 @@ gem "dockerfile-rails", ">= 1.7", group: :development
 
 gem "litestream", "~> 0.12.0"
 
-gem "aws-sdk-s3", "~> 1.183", require: false
+# gem "aws-sdk-s3", "~> 1.183", require: false
