@@ -1,4 +1,8 @@
 <h1>All Articles</h1>
+<%= form_with url: articles_path, method: :get, local: true do |form| %>
+  <%= form.text_field :query, placeholder: "Search for articles" %>
+  <%= form.submit "Search" %>
+<% end %>
 
 <% @articles.each do |article| %>
   <div class="article">
