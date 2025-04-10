@@ -1,5 +1,5 @@
 databases:
-  - name: realtimeSearchBox
+  - name: realtimeSearchBox1
     databaseName: search_database
     user: realtimeSearchBox
     plan: free
