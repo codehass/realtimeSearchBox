@@ -1,29 +1,27 @@
-# fly.toml app configuration file generated for realtimesearchbox on 2025-04-10T19:24:43+01:00
-#
-# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
-#
-
 app = 'realtimesearchbox'
 primary_region = 'cdg'
 console_command = '/rails/bin/rails console'
 
 [build]
+  builder = "heroku/buildpacks:20"  # Explicit buildpack
 
 [deploy]
   release_command = './bin/rails db:prepare'
+  strategy = "rolling"              # Better deployment strategy
 
 [env]
   PORT = '8080'
+  RAILS_ENV = 'production'         # Explicit environment
 
 [processes]
-  app = './bin/rake litestream:run ./bin/rails server'
+  app = './bin/rails server -b 0.0.0.0 -p ${PORT}'  # Explicit binding
 
 [http_service]
   internal_port = 8080
   force_https = true
-  auto_stop_machines = 'stop'
+  auto_stop_machines = false       # Prevent automatic shutdown
   auto_start_machines = true
-  min_machines_running = 0
+  min_machines_running = 1         # Always keep at least one running
   processes = ['app']
 
 [[vm]]
