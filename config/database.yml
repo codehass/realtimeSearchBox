@@ -1,34 +1,56 @@
+# default: &default
+#   adapter: postgresql
+#   encoding: unicode
+#   username: postgres
+#   password: 1234
+#   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+#   timeout: 5000
+
+# development:
+#   <<: *default
+#   database: searchDB
+
+# test:
+#   <<: *default
+#   database: searchDB
+
+# # production:
+# #   <<: *default
+# #   database: <%= ENV['DATABASE_URL'] %>
+# #   username: <%= ENV['DATABASE_USERNAME'] %>
+# #   password: <%= ENV['DATABASE_PASSWORD'] %>
+# #   host: <%= ENV['DATABASE_HOST'] || 'localhost' %>
+# #   port: <%= ENV['DATABASE_PORT'] || 5432 %>
+# #   pool: 5
+# #   timeout: 5000
+# production:
+#   adapter: postgresql
+#   encoding: unicode
+#   pool: 5
+#   username: <%= ENV['DATABASE_USERNAME'] %>
+#   password: <%= ENV['DATABASE_PASSWORD'] %>
+#   host: search-database.internal  # Use Fly.io's internal DNS name
+#   port: 5432
+#   database: searchDB
+
 default: &default
   adapter: postgresql
   encoding: unicode
-  username: postgres
-  password: 1234
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   timeout: 5000
 
 development:
   <<: *default
-  database: searchDB
+  database: searchDB_development
+  username: postgres
+  password: 1234
 
 test:
   <<: *default
-  database: searchDB
+  database: searchDB_test
+  username: postgres
+  password: 1234
 
-# production:
-#   <<: *default
-#   database: <%= ENV['DATABASE_URL'] %>
-#   username: <%= ENV['DATABASE_USERNAME'] %>
-#   password: <%= ENV['DATABASE_PASSWORD'] %>
-#   host: <%= ENV['DATABASE_HOST'] || 'localhost' %>
-#   port: <%= ENV['DATABASE_PORT'] || 5432 %>
-#   pool: 5
-#   timeout: 5000
 production:
-  adapter: postgresql
-  encoding: unicode
-  pool: 5
-  username: <%= ENV['DATABASE_USERNAME'] %>
-  password: <%= ENV['DATABASE_PASSWORD'] %>
-  host: search-database.internal  # Use Fly.io's internal DNS name
-  port: 5432
-  database: searchDB
+  <<: *default
+  url: <%= ENV['DATABASE_URL'] %>
