@@ -1,12 +1,12 @@
 databases:
-  - name: realtime_search_box
-    databaseName: search_database
+  - name: realtime-search-box
+    databaseName: realtime_search_box_production
     user: realtime_search_box
     plan: free
 
 services:
   - type: web
-    name: realtime_search_box
+    name: realtime-search-box
     runtime: ruby
     plan: free
     buildCommand: "./bin/render-build.sh"
@@ -15,7 +15,7 @@ services:
     envVars:
       - key: DATABASE_URL
         fromDatabase:
-          name: realtime_search_box
+          name: realtime-search-box
           property: connectionString
       - key: RAILS_MASTER_KEY
         sync: false
