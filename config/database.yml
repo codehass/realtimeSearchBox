@@ -25,3 +25,7 @@ production: &production
 queue:
   <<: *production
   database: myapp_queue
+
+cache:
+  <<: *default
+  database: cache_production
