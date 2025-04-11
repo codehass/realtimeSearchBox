@@ -2,7 +2,7 @@ class SearchesController < ApplicationController
   def index
     @searches = current_visitor.searches.order(created_at: :desc)
 
-    @trending_queries = Search.group(:query).order("count_id DESC").limit(3).count(:id)
+    @trending_queries = current_visitor.searches.group(:query).order("count_id DESC").limit(3).count(:id)
   end
 
   private
