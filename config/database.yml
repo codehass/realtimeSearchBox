@@ -18,13 +18,13 @@ test:
 production: &production
   <<: *default
   url: <%= ENV['DATABASE_URL'] %>
-  database: search_database
+  database: search_database_production
   username: search_database
   password: <%= ENV["SEARCH_DATABASE_PASSWORD"] %>
 
 queue:
   <<: *production
-  database: myapp_queue
+  database: search_database_queue
 
 cache:
   <<: *default
