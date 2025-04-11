@@ -1,19 +1,17 @@
 class ArticlesController < ApplicationController
-def index
-  @articles = Article.all
+  def index
+    @articles = Article.all
 
-  Rails.logger.info "=== Articles#index called ==="
-  Rails.logger.info "Query param: #{params[:query].inspect}"
+    if params[:query].present?
+      query = params[:query].strip
 
-  if params[:query].present?
-    query = params[:query].strip
-    @articles = Article.where("title LIKE ? OR content LIKE ?", "%#{query}%", "%#{query}%")
+      # Filter articles based on query
+      @articles = Article.where("title LIKE ? OR content LIKE ?", "%#{query}%", "%#{query}%")
 
-    search = current_visitor.searches.create(query: query)
-    Rails.logger.info "Search saved? #{search.persisted?}"
-    Rails.logger.info "Search errors: #{search.errors.full_messages.inspect}" unless search.persisted?
+      # Create a new Search record for the current visitor
+      current_visitor.searches.create(query: query)
+    end
   end
-end
 
   def create
     @article = Article.new(article_params)
