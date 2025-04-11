@@ -1,17 +1,19 @@
 class ArticlesController < ApplicationController
-  def index
-    @articles = Article.all
+def index
+  @articles = Article.all
 
-    if params[:query].present?
-      query = params[:query].strip
+  if params[:query].present?
+    query = params[:query].strip
+    @articles = Article.where("title LIKE ? OR content LIKE ?", "%#{query}%", "%#{query}%")
 
-      # Filter articles based on query
-      @articles = Article.where("title LIKE ? OR content LIKE ?", "%#{query}%", "%#{query}%")
-
-      # Create a new Search record for the current visitor
+    if current_visitor
       current_visitor.searches.create(query: query)
+    else
+      # Log this issue for debugging
+      Rails.logger.warn "Could not record search - no current visitor"
     end
   end
+end
 
   def create
     @article = Article.new(article_params)
