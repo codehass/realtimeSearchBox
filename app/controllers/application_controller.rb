@@ -4,9 +4,11 @@ class ApplicationController < ActionController::Base
   helper_method :current_visitor
 
   def current_visitor
-    ip = request.remote_ip
-    visitor = Visitor.find_or_create_by(ip_address: ip)
-    Rails.logger.info "Visitor ID: #{visitor.id} for IP: #{ip}" # Log visitor ID and IP address
-    @current_visitor ||= visitor
+    @current_visitor ||= begin
+      # Use session-stored visitor_id if available, otherwise find or create based on IP
+      visitor = Visitor.find_by(id: session[:visitor_id]) || Visitor.find_or_create_by(ip_address: request.remote_ip)
+      session[:visitor_id] = visitor.id  # Persist visitor_id in the session
+      visitor
+    end
   end
 end
