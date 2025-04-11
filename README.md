@@ -35,6 +35,7 @@
 - **Search for articles**: Users can search for articles, and the system keeps track of those searches.
 - **Get statistics about searched queries**: The system provides analytics on popular search queries and trends.
 
+## Home 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- GETTING STARTED -->
@@ -48,8 +49,8 @@ To run this app locally, you need to have the following installed on your system
 - **A code editor** (e.g., VS Code, Sublime Text)
 - **A browser** (e.g., Chrome, Firefox)
 - **Node.js**: For managing JavaScript dependencies.
-- **Ruby**: Ensure you have Ruby installed (version 2.7 or higher recommended).
-- **Rails**: Install Rails to run the application.
+- **Ruby**: Ensure you have Ruby installed (version 3.4.2).
+- **Rails**: Install Rails to run the application (version Rails 8.0.2).
 
 ### Setup
 
