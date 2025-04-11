@@ -1,19 +1,20 @@
 class ArticlesController < ApplicationController
-def index
-  @articles = Article.all
+  def index
+    Rails.logger.info "Visitor IP: #{request.remote_ip}" # Log the visitor's IP for each request
 
-  if params[:query].present?
-    query = params[:query].strip
-    @articles = Article.where("title LIKE ? OR content LIKE ?", "%#{query}%", "%#{query}%")
+    @articles = Article.all
 
-    if current_visitor
-      current_visitor.searches.create(query: query)
-    else
-      # Log this issue for debugging
-      Rails.logger.warn "Could not record search - no current visitor"
+    if params[:query].present?
+      query = params[:query].strip
+      @articles = Article.where("title LIKE ? OR content LIKE ?", "%#{query}%", "%#{query}%")
+
+      if current_visitor
+        current_visitor.searches.create(query: query)
+      else
+        Rails.logger.warn "Could not record search - no current visitor"
+      end
     end
   end
-end
 
   def create
     @article = Article.new(article_params)
