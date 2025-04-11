@@ -24,5 +24,6 @@ module RealtimeSearchBox
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
     config.active_storage.service = :local
+    config.action_dispatch.trusted_proxies = [ "127.0.0.1", "::1" ] # Add proxy addresses here
   end
 end
