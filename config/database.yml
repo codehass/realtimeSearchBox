@@ -88,3 +88,7 @@ production:
   database: search_database
   username: search_database
   password: <%= ENV["SEARCH_DATABASE_PASSWORD"] %>
+
+queue:  # For Solid Queue
+  <<: *production  # Inherits settings from `production`
+  database: myapp_queue  
